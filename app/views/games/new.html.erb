@@ -1,1 +1,14 @@
-<%= @letters %>
+<h1 class="text-center">Welcome to the longest word-game!</h1>
+<h2 class="text-center">Here is your grid:</h2>
+<h5 class="text-center"><%= @letters.join(' ') %></h5>
+<br>
+<h6 class="text-center">What's your best shot?</h6>
+
+<form class="text-center" action="/score" method="post" data-turbo="false">
+<input type="text" name="guess" value="<%= params[:guess] %>">
+<input type="submit" value="Play!">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<%= hidden_field_tag :letters, @letters %>
+</form>
+
+<p class="text-center"><%= link_to "Re-roll", new_path %></p>
